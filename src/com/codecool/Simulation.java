@@ -1,3 +1,5 @@
+package com.codecool;
+
 import java.io.*;
 import java.util.Random;
 import java.lang.Math;
@@ -5,7 +7,7 @@ import java.lang.Math;
 public class Simulation {
     private Horse[] horses;
     private int amountOfSimulations;
-    private static final int TRACK_LENGTH_KM = 1;
+    private static final double TRACK_LENGTH_KM = 1.0;
     private static Random random = new Random();
 
     public Simulation(int amountOfSimulations) {
@@ -38,7 +40,7 @@ public class Simulation {
     }
 
     public void countSpeed(Horse horse) {
-        double newSpeed = ((horse.getSpeed()/2) * (horse.getEnergyLevel()/100))*(horse.getJockeyWeight()+(-3+random.nextInt(6)));
+        double newSpeed = ((horse.getSpeed()) * (horse.getEnergyLevel()/90))*(jockeyWeightChangePercentage(horse));
         horse.setSpeed((int)Math.round(newSpeed));
     }
 
@@ -58,6 +60,17 @@ public class Simulation {
             }
         }
         return penaltySeconds;
+    }
+
+    public Horse[] getHorses() {
+        return horses;
+    }
+
+    public double jockeyWeightChangePercentage(Horse horse) {
+        int weightChange = (-3+random.nextInt(7));
+        int oldWeight = horse.getJockeyWeight();
+        horse.setJockeyWeight(weightChange);
+        return  (1 - (((horse.getJockeyWeight() - oldWeight)/100)*2));
     }
 
     

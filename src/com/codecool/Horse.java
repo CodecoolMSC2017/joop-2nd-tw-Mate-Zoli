@@ -1,3 +1,5 @@
+package com.codecool;
+
 public class Horse {
 
     private String name;
@@ -34,6 +36,10 @@ public class Horse {
 
     public int getJockeyWeight() {
         return jockeyWeigth;
+    }
+
+    public void setJockeyWeight(int weightChange) {
+        jockeyWeigth += weightChange;
     }
 
     public double getTripChance() {
