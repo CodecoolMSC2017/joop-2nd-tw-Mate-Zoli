@@ -7,13 +7,13 @@ public class Horse {
     private int tripChance;
     private int energyLevel;
 
-    public Horse(String name, String jockeyName, int speed, int jockeyWeigth, int tripChance) {
+    public Horse(String name, String jockeyName, int speed, int jockeyWeigth, int tripChance,int energyLevel) {
         this.name = name;
         this.speed = speed;
         this.jockeyName = jockeyName;
         this.jockeyWeigth = jockeyWeigth;
         this.tripChance = tripChance;
-        this.energyLevel = 100;
+        this.energyLevel = energyLevel;
     }
 
     public String getName() {
@@ -22,6 +22,10 @@ public class Horse {
 
     public int getSpeed() {
         return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed=speed;
     }
 
     public String getJockeyName() {
