@@ -5,6 +5,7 @@ import java.lang.Math;
 public class Simulation {
     private Horse[] horses;
     private int amountOfSimulations;
+    private static final int TRACK_LENGTH_KM = 1;
     private static Random random = new Random();
 
     public Simulation(int amountOfSimulations) {
@@ -37,8 +38,26 @@ public class Simulation {
     }
 
     public void countSpeed(Horse horse) {
-        double newSpeed = ((horse.getSpeed()/2) * (horse.getEnergyLevel()/100))*(getJockeyWeight()+(-3+random.nextInt(6));
-        horse.setSpeed(Math.round(newSpeed));
+        double newSpeed = ((horse.getSpeed()/2) * (horse.getEnergyLevel()/100))*(horse.getJockeyWeight()+(-3+random.nextInt(6)));
+        horse.setSpeed((int)Math.round(newSpeed));
+    }
+
+    public double countLapTime(Horse horse) {
+        countSpeed(horse);
+        double time = (TRACK_LENGTH_KM / horse.getSpeed()) * 3600;
+        return time + tripCount(horse);
+    }
+
+    public int tripCount(Horse horse) {
+        int occurences = (int)(TRACK_LENGTH_KM/0.1);
+        int penaltySeconds = 0;
+        for(int i = 0; i < occurences; i++) {
+            int rand = random.nextInt(101) + 1;
+            if (rand <= horse.getTripChance()) {
+                penaltySeconds++;
+            }
+        }
+        return penaltySeconds;
     }
 
     
