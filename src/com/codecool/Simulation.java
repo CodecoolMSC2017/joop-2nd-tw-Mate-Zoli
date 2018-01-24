@@ -14,6 +14,7 @@ public class Simulation {
     public Simulation(int amountOfSimulations) {
         this.amountOfSimulations = amountOfSimulations;
         horses = new Horse[0];
+        loadHorses = new Horse[0];
     }
 
     public Horse[] getHorses() {
@@ -33,14 +34,23 @@ public class Simulation {
         try(BufferedReader br = new BufferedReader(new FileReader("../data/" + filename))){
             while((line = br.readLine()) != null) {
                 String[] horse = line.split(",");
-                if(horse.length == 5) {
-                    int energyLevel = 100 - random.nextInt(20);
-                    Horse newHorse = new Horse(horse[0], horse[1],Integer.parseInt(horse[2]), Integer.parseInt(horse[3]), Integer.parseInt(horse[4]),energyLevel);
-                    addToHorseArray(newHorse);
-                } else {
-                    Horse newLoadHorse = new Horse(horse[0], horse[1], Integer.parseInt(horse[2]), Integer.parseInt(horse[3]), Integer.parseInt(horse[4]), Integer.parseInt(horse[5]), Double.parseDouble(horse[6]));
-                    addToLoadHorseArray(newLoadHorse);
-                }
+                int energyLevel = 100 - random.nextInt(20);
+                Horse newHorse = new Horse(horse[0], horse[1],Integer.parseInt(horse[2]), Integer.parseInt(horse[3]), Integer.parseInt(horse[4]),energyLevel);
+                addToHorseArray(newHorse);
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    public void loadHorsesFromFile(String filename) {
+        String line = "";
+        try(BufferedReader br = new BufferedReader(new FileReader("../data/" + filename))){
+            while((line = br.readLine()) != null) {
+                String[] horse = line.split(",");
+                Horse newLoadHorse = new Horse(horse[0], horse[1], Integer.parseInt(horse[2]), Integer.parseInt(horse[3]), Integer.parseInt(horse[4]), Integer.parseInt(horse[5]), Double.parseDouble(horse[6]));
+                addToLoadHorseArray(newLoadHorse);
             }
         }catch (IOException e) {
             e.printStackTrace();
@@ -66,8 +76,12 @@ public class Simulation {
         loadHorses = tempArray;
     }
 
+    public double countRaceEnergy(Horse horse) {
+        return (horse.getEnergyLevel()/90.0);
+    }
+
     public void countSpeed(Horse horse) {
-        double newSpeed = ((horse.getSpeed()) * (horse.getEnergyLevel()/90))*(jockeyWeightChangePercentage(horse));
+        double newSpeed = (horse.getSpeed()) * (countRaceEnergy(horse))*(jockeyWeightChangePercentage(horse));
         horse.setSpeed((int)Math.round(newSpeed));
     }
 
@@ -91,7 +105,7 @@ public class Simulation {
 
     public double jockeyWeightChangePercentage(Horse horse) {
         int weightChange = (-3+random.nextInt(7));
-        int oldWeight = horse.getJockeyWeight();
+        double oldWeight = horse.getJockeyWeight();
         horse.setJockeyWeight(weightChange);
         return (1 - (((horse.getJockeyWeight() - oldWeight)/100)*2));
     }
