@@ -9,6 +9,7 @@ public class Horse {
     private int tripChance;
     private int energyLevel;
     private double lapTime;
+    private static Logger logger = new Logger();
 
     public Horse(String name, String jockeyName, int speed, int jockeyWeigth, int tripChance,int energyLevel) {
         this.name = name;
@@ -78,7 +79,7 @@ public class Horse {
                 + ", Jockey's weigth: " + jockeyWeigth
                 + ", Trip chance: " + tripChance
                 + ", Horse's energylevel: " + energyLevel
-                + ", Horse's lap time: " + lapTime;
+                + ", Horse's lap time: " + logger.printTime(lapTime);
     }
 
 }
