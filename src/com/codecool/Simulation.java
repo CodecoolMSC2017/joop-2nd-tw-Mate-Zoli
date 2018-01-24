@@ -5,11 +5,13 @@ import java.util.Random;
 import java.lang.Math;
 
 public class Simulation {
+
     private Horse[] horses;
     private Horse[] loadHorses;
     private int amountOfSimulations;
     private static final double TRACK_LENGTH_KM = 1.0;
     private static Random random = new Random();
+    private static StringBuilder builder = new StringBuilder();
 
     public Simulation(int amountOfSimulations) {
         this.amountOfSimulations = amountOfSimulations;
@@ -30,6 +32,7 @@ public class Simulation {
     }
 
     public void horsesFromFile(String filename) {
+        horses = new Horse[0];
         String line = "";
         try(BufferedReader br = new BufferedReader(new FileReader("../data/" + filename))){
             while((line = br.readLine()) != null) {
@@ -117,7 +120,6 @@ public class Simulation {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        StringBuilder builder = new StringBuilder();
         for(int i = 0; i < horses.length; i++) {
             builder.append(horses[i].getName());
             builder.append(',');
