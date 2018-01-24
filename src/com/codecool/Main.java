@@ -2,28 +2,25 @@ package com.codecool;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Simulation verseny = new Simulation(Integer.parseInt(args[0]));
+    public static Simulation generateSimulation(int round) {
+        Simulation simulation = new Simulation(round);
+        for (int i = 0; i < round; i++) {
+            simulation.horsesFromFile("Horses.csv");
+            for (int j = 0; j < simulation.getHorses().length; j++) {
+                    simulation.countLapTime(simulation.getHorses()[j]);
+                }
+            simulation.generateData();
+        }
+        simulation.loadHorsesFromFile("generateData.csv");
 
-        for(int i = 0; i < verseny.getAmountOfSimulations(); i++) {
-            verseny.horsesFromFile("Horses.csv");
-            for (int j = 0; j < verseny.getHorses().length; j++) {
-                verseny.countLapTime(verseny.getHorses()[j]);
-                System.out.println(verseny.getHorses()[j]);
-                System.out.println("\n\n");
-            }
+        return simulation;
+    }
+
+    public static void main(String[] args) {
+        Simulation s = generateSimulation(Integer.parseInt(args[0]));
+        for(int i = 0; i < s.getLoadHorses().length; i++) {
+            System.out.println(s.getLoadHorses()[i]);
         }
 
-        verseny.generateData();
-
-
-
-        System.out.println("\n\n\n\n\n fityma");
-        verseny.loadHorsesFromFile("generateData.csv");
-
-        for (int j = 0; j < verseny.getLoadHorses().length; j++) {
-            System.out.println(verseny.getLoadHorses()[j]);
-            System.out.println("\n\n");
-            }
     }
 }
