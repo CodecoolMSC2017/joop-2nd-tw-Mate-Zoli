@@ -26,13 +26,14 @@ public class Result {
         return sortedHorsesByLapTime;
     }
 
-    public void addToHorseArray(Horse[] horses, Horse horse) {
+    public Horse[] addToHorseArray(Horse[] horses, Horse horse) {
         Horse[] tempArray = new Horse[horses.length + 1];
         for (int i = 0; i < horses.length; i++) {
             tempArray[i] = horses[i];
         }
         tempArray[tempArray.length - 1] = horse;
         horses = tempArray;
+        return horses;
     }
 
     public void sortHorseArray(Horse[] horses) {
@@ -53,12 +54,11 @@ public class Result {
         for(int i = 0; i < horses.length; i += 10) {
             Horse[] tempHorseArray = new Horse[0];
             for(int j = i; j < (i+10); j++) {
-                addToHorseArray(tempHorseArray, horses[j]);
+                tempHorseArray = addToHorseArray(tempHorseArray, horses[j]);
             }
-            System.out.println("tempHorseArray length: " + tempHorseArray.length);
             sortHorseArray(tempHorseArray);
             for(int x = 0; x < tempHorseArray.length; x++) {
-                addToHorseArray(sortedHorsesByLapTime, tempHorseArray[x]);
+                sortedHorsesByLapTime = addToHorseArray(sortedHorsesByLapTime, tempHorseArray[x]);
             }
         }
     }
