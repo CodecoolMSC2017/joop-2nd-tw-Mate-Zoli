@@ -20,6 +20,7 @@ public class Main {
 
         Simulation s = generateSimulation(Integer.parseInt(args[0]));
         Logger logger = new Logger();
+        double argsDouble = Double.parseDouble(args[0]);
 
         Simulator simulator = new Simulator(s, logger);
 
@@ -42,17 +43,17 @@ public class Main {
         logger.log("1st most rounds won by horse:",res.getStatistics().getWinners()[0].getName());
         logger.log("\tJockey name:",res.getStatistics().getWinners()[0].getJockeyName());
         logger.log("\tRounds won:",Integer.toString(res.getStatistics().getWinners()[0].getWinCount()));
-        logger.log("\tWins in percentage:",String.valueOf((res.getStatistics().getWinners()[0].getWinCount() / 100.0)*100) + "%\n");
+        logger.log("\tWins in percentage:",String.valueOf((res.getStatistics().getWinners()[0].getWinCount() / argsDouble)*100) + "%\n");
 
         logger.log("2nd most rounds won by horse:",res.getStatistics().getWinners()[1].getName());
         logger.log("\tJockey name:",res.getStatistics().getWinners()[1].getJockeyName());
         logger.log("\tRounds won:",Integer.toString(res.getStatistics().getWinners()[1].getWinCount()));
-        logger.log("\tWins in percentage:",String.valueOf((res.getStatistics().getWinners()[1].getWinCount() / 100.0)*100) + "%\n");
+        logger.log("\tWins in percentage:",String.valueOf((res.getStatistics().getWinners()[1].getWinCount() / argsDouble)*100) + "%\n");
 
         logger.log("3rd most rounds won by horse:",res.getStatistics().getWinners()[2].getName());
         logger.log("\tJockey name:",res.getStatistics().getWinners()[2].getJockeyName());
         logger.log("\tRounds won:",Integer.toString(res.getStatistics().getWinners()[2].getWinCount()));
-        logger.log("\tWins in percentage:",String.valueOf((res.getStatistics().getWinners()[2].getWinCount() / 100.0)*100) + "%\n");
+        logger.log("\tWins in percentage:",String.valueOf((res.getStatistics().getWinners()[2].getWinCount() / argsDouble)*100) + "%\n");
         
         
 
