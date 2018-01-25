@@ -23,17 +23,37 @@ public class Main {
 
         Simulator simulator = new Simulator(s, logger);
 
+        logger.log("Results over " + args[0] + "simulations: ","\n");
         for(int i = 0; i < simulator.countEndResult().length; i++) {
-            System.out.println(simulator.countEndResult()[i]);
+            logger.log("\t" + (i+1) + ".Place",simulator.countEndResult()[i].getName());
+            logger.log("\tAverage time:",logger.printTime(simulator.countEndResult()[i].getLapTime()));
         }
 
         Result res = simulator.run();
-        System.out.println("\n\n" + res.getStatistics().getFastestHorse());
-        System.out.println("\n\n" + res.getStatistics().getSlowestHorse());
-        System.out.println("\n\n" + res.getStatistics().getWinners()[0].getName()+ "win: " + res.getStatistics().getWinners()[0].getWinCount());
-        System.out.println("\n\n" + res.getStatistics().getWinners()[1].getName()+ "win: " + res.getStatistics().getWinners()[1].getWinCount());
-        System.out.println("\n\n" + res.getStatistics().getWinners()[2].getName()+ "win: " + res.getStatistics().getWinners()[2].getWinCount());
-        System.out.println("\n\n" + res.getStatistics().getWinners()[3].getName()+ "win: " + res.getStatistics().getWinners()[3].getWinCount());
+        logger.log("\nStatistics over " + args[0] + " simulations:","\n");
+
+        logger.log("\tFastest horse:",res.getStatistics().getFastestHorse().getName());
+        logger.log("\tAverage speed:",res.getStatistics().getFastestHorse().getSpeed() + "Km/h \n");
+
+        logger.log("\tSlowest horse:",res.getStatistics().getSlowestHorse().getName());
+        logger.log("\tAverage speed:",res.getStatistics().getSlowestHorse().getSpeed() + "Km/h \n");
+        
+        
+        logger.log("1st most rounds won by horse:",res.getStatistics().getWinners()[0].getName());
+        logger.log("\tJockey name:",res.getStatistics().getWinners()[0].getJockeyName());
+        logger.log("\tRounds won:",Integer.toString(res.getStatistics().getWinners()[0].getWinCount()));
+        logger.log("\tWins in percentage:",String.valueOf((res.getStatistics().getWinners()[0].getWinCount() / 100.0)*100) + "%\n");
+
+        logger.log("2nd most rounds won by horse:",res.getStatistics().getWinners()[1].getName());
+        logger.log("\tJockey name:",res.getStatistics().getWinners()[1].getJockeyName());
+        logger.log("\tRounds won:",Integer.toString(res.getStatistics().getWinners()[1].getWinCount()));
+        logger.log("\tWins in percentage:",String.valueOf((res.getStatistics().getWinners()[1].getWinCount() / 100.0)*100) + "%\n");
+
+        logger.log("3rd most rounds won by horse:",res.getStatistics().getWinners()[2].getName());
+        logger.log("\tJockey name:",res.getStatistics().getWinners()[2].getJockeyName());
+        logger.log("\tRounds won:",Integer.toString(res.getStatistics().getWinners()[2].getWinCount()));
+        logger.log("\tWins in percentage:",String.valueOf((res.getStatistics().getWinners()[2].getWinCount() / 100.0)*100) + "%\n");
+        
         
 
 

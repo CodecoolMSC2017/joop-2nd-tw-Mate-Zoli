@@ -139,8 +139,4 @@ public class Simulation {
         pw.write(builder.toString());
         pw.close();
     }
-
-    public void load() {
-        horsesFromFile("generateData.csv");
-    }
 }
