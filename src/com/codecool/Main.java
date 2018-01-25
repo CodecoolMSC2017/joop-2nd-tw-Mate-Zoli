@@ -17,6 +17,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        /*
         Simulation s = generateSimulation(Integer.parseInt(args[0]));
     
         for(int i = 0; i < s.getLoadHorses().length; i++) {
@@ -28,6 +29,17 @@ public class Main {
         for(int i = 0; i < result.getSortedHorsesByLapTime().length; i++) {
             System.out.println(result.getSortedHorsesByLapTime()[i]);
         }
+        */
+
+        Simulation s = generateSimulation(Integer.parseInt(args[0]));
+        Logger logger = new Logger();
+
+        Simulator simulator = new Simulator(s, logger);
+
+        for(int i = 0; i < simulator.countEndResult().length; i++) {
+            System.out.println(simulator.countEndResult()[i]);
+        }
+
 
 
     }
