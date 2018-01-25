@@ -1,18 +1,18 @@
 package com.codecool;
 
-public class Statstics {
+public class Statistics {
 
     private Horse fastesHorse;
     private Horse slowestHorse;
-    private Horse fattestJockey;
+    private Horse[] winners;
 
-    public Statstics () {}
+    public Statistics () {}
 
-    public Horse getFastesHorse() {
+    public Horse getFastestHorse() {
         return fastesHorse;
     }
 
-    public void setFastesHorse(Horse fastesHorse) {
+    public void setFastestHorse(Horse fastesHorse) {
         this.fastesHorse = fastesHorse;
     }
 
@@ -24,13 +24,13 @@ public class Statstics {
         this.slowestHorse = slowestHorse;
     }
 
-    public Horse getFattestJockey() {
-        return fattestJockey;
+
+    public Horse[] getWinners() {
+        return winners;
     }
 
-    public void setFattestJockey(Horse fattestJockey) {
-        this.fattestJockey = fattestJockey;
+    public void setWinners(Horse[] horses) {
+        this.winners = horses;
     }
-
 
 }

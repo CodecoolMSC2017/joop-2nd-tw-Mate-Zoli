@@ -9,6 +9,7 @@ public class Horse {
     private int tripChance;
     private int energyLevel;
     private double lapTime;
+    private int winCount;
     private static Logger logger = new Logger();
 
     public Horse(String name, String jockeyName, int speed, int jockeyWeigth, int tripChance,int energyLevel) {
@@ -29,6 +30,7 @@ public class Horse {
         this.tripChance = tripChance;
         this.energyLevel = energyLevel;
         this.lapTime = lapTime;
+        this.winCount = 0;
     }
 
     public String getName() {
@@ -71,15 +73,19 @@ public class Horse {
         this.lapTime = lapTime;
     }
 
+    public int getWinCount() {
+        return winCount;
+    }
+
+    public void setWinCount(int win) {
+        winCount += win;
+    }
+
     @Override
     public String toString() {
         return "Horse's name: " + name 
-                + ", Horse's speed: " + speed
                 + ", Jockey's name: " + jockeyName
-                + ", Jockey's weigth: " + jockeyWeigth
-                + ", Trip chance: " + tripChance
-                + ", Horse's energylevel: " + energyLevel
-                + ", Horse's lap time: " + logger.printTime(lapTime);
+                + ", Horse's average lap time: " + logger.printTime(lapTime);
     }
 
 }
